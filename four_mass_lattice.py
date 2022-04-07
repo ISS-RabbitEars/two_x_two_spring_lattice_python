@@ -139,7 +139,7 @@ xmin = x.min() if x.min() < min(xp) else min(xp)
 ymax = y.max() if y.max() > max(yp) else max(yp)
 ymin = y.min() if y.min() < min(xp) else min(xp)
 
-msf = 1/75
+msf = 1/50
 drs = np.sqrt((xmax - xmin)**2 + (ymax - ymin)**2)
 mr = msf * drs
 mra = mr * m / max(m)
@@ -151,7 +151,7 @@ ymax += 2*max(mra)
 ymin -= 2*max(mra)
 
 dr1 = np.asarray([np.sqrt((x[(i+1)%4] - x[i])**2 + (y[(i+1)%4] - y[i])**2) for i in range(4)])
-dr2 = np.asarray([np.sqrt((xp[2*i+j] - x[i])**2 + (yp[2*i+j] - y[i])**2) for j in range(2) for i in range(4)])
+dr2 = np.asarray([np.sqrt((xp[i] - x[i//2])**2 + (yp[i] - y[i//2])**2) for i in range(8)])
 dr1max = np.asarray([max(dr1[i]) for i in range(4)])
 dr2max = np.asarray([max(dr2[i]) for i in range(8)])
 theta1 = np.asarray([np.arccos((y[(i+1)%4] - y[i])/dr1[i]) for i in range(4)])
